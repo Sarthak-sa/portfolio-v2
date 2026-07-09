@@ -60,8 +60,8 @@ export const projects = [
 		],
 	},
 	{
-		slug: "movie-search",
-		title: "Movie Search",
+		slug: "spotlight",
+		title: "Spotlight",
 		tagline: "Search, discover, and save films — powered by TMDB.",
 		status: "In progress",
 		statusDetail: "Weekend build · In progress · 2026",
@@ -73,9 +73,9 @@ export const projects = [
 		liveUrl: null,
 		ctaLabel: "Live demo",
 		shortDescription:
-			"React movie discovery app — debounced search, trending homepage, detail pages, and a localStorage watchlist, all backed by the TMDB API.",
+			"Spotlight — a React movie discovery app with debounced search, trending homepage, detail pages, and a localStorage watchlist, all backed by the TMDB API.",
 		overview: [
-			"Movie Search is a weekend side project: a dark-themed React app for finding films, browsing what's trending, and saving titles to a personal watchlist.",
+			"Spotlight is a weekend side project: a dark-themed React app for finding films, browsing what's trending, and saving titles to a personal watchlist.",
 			"The plan covers debounced search, a responsive poster grid, rich movie detail pages, and watchlist persistence in localStorage — no backend required.",
 			"Built to sharpen API integration and UI polish on a tight timeline, with deployment to Vercel or Netlify when the MVP ships.",
 		],
