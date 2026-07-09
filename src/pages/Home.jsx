@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import IntegrationContact from "../components/IntegrationContact";
 import { profile } from "../data/profile";
-import { projects } from "../data/projects";
+import { inProgressProjects, shippedProjects } from "../data/projects";
 import ProjectCard from "../components/ProjectCard";
 
 export default function Home() {
@@ -108,14 +108,29 @@ export default function Home() {
 					</h2>
 				</motion.div>
 
-				<div className="mt-10">
-					<p className="mb-4 flex items-center gap-2 text-sm text-zinc-400">
-						<span className="h-2 w-2 rounded-full bg-purple-500" /> Completed · shipped
-					</p>
-					<div className="grid gap-6 md:grid-cols-2">
-						{projects.map((project) => (
-							<ProjectCard key={project.slug} project={project} />
-						))}
+				<div className="mt-10 space-y-10">
+					{inProgressProjects.length > 0 && (
+						<div>
+							<p className="mb-4 flex items-center gap-2 text-sm text-zinc-400">
+								<span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" /> In progress
+							</p>
+							<div className="grid gap-6 md:grid-cols-2">
+								{inProgressProjects.map((project) => (
+									<ProjectCard key={project.slug} project={project} />
+								))}
+							</div>
+						</div>
+					)}
+
+					<div>
+						<p className="mb-4 flex items-center gap-2 text-sm text-zinc-400">
+							<span className="h-2 w-2 rounded-full bg-purple-500" /> Completed · shipped
+						</p>
+						<div className="grid gap-6 md:grid-cols-2">
+							{shippedProjects.map((project) => (
+								<ProjectCard key={project.slug} project={project} />
+							))}
+						</div>
 					</div>
 				</div>
 			</section>

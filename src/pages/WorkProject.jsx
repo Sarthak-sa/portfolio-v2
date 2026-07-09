@@ -1,6 +1,6 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Clapperboard } from "lucide-react";
 import { getNextProject, getProjectBySlug } from "../data/projects";
 import { profile } from "../data/profile";
 
@@ -19,6 +19,8 @@ export default function WorkProject() {
 	const nextProject = getNextProject(slug);
 
 	if (!project) return <Navigate to="/#work" replace />;
+
+	const isInProgress = project.category === "in-progress";
 
 	return (
 		<article className="mx-auto max-w-4xl px-4 py-8 md:px-6 md:py-14">
@@ -64,14 +66,25 @@ export default function WorkProject() {
 				<motion.div
 					variants={fadeUp}
 					transition={{ duration: 0.55 }}
-					className="showcase-frame mt-10 overflow-hidden rounded-2xl border border-purple-500/25 bg-gradient-to-br from-purple-900/40 via-cosmic-900 to-cosmic-950 p-2 shadow-2xl shadow-purple-500/15"
+					className={`showcase-frame mt-10 overflow-hidden rounded-2xl border p-2 shadow-2xl ${
+						isInProgress
+							? "border-amber-500/25 bg-gradient-to-br from-amber-900/30 via-cosmic-900 to-cosmic-950 shadow-amber-500/10"
+							: "border-purple-500/25 bg-gradient-to-br from-purple-900/40 via-cosmic-900 to-cosmic-950 shadow-purple-500/15"
+					}`}
 				>
-					<img
-						src={project.image}
-						alt={`${project.title} showcase`}
-						className="aspect-[16/10] w-full rounded-xl object-cover object-top"
-						loading="eager"
-					/>
+					{project.image ? (
+						<img
+							src={project.image}
+							alt={`${project.title} showcase`}
+							className="aspect-[16/10] w-full rounded-xl object-cover object-top"
+							loading="eager"
+						/>
+					) : (
+						<div className="flex aspect-[16/10] flex-col items-center justify-center gap-3 rounded-xl border border-amber-500/15 bg-gradient-to-br from-amber-500/5 via-cosmic-900 to-cosmic-950">
+							<Clapperboard size={48} className="text-amber-400/60" />
+							<p className="text-sm text-amber-200/70">Screenshots coming soon</p>
+						</div>
+					)}
 				</motion.div>
 
 				<motion.div
@@ -103,16 +116,26 @@ export default function WorkProject() {
 					</div>
 				</motion.div>
 
-				<motion.a
-					variants={fadeUp}
-					transition={{ duration: 0.5 }}
-					href={project.liveUrl}
-					target="_blank"
-					rel="noreferrer"
-					className="btn-primary mt-8 flex w-full"
-				>
-					{project.ctaLabel} <ArrowUpRight size={16} />
-				</motion.a>
+				{project.liveUrl ? (
+					<motion.a
+						variants={fadeUp}
+						transition={{ duration: 0.5 }}
+						href={project.liveUrl}
+						target="_blank"
+						rel="noreferrer"
+						className="btn-primary mt-8 flex w-full"
+					>
+						{project.ctaLabel} <ArrowUpRight size={16} />
+					</motion.a>
+				) : isInProgress ? (
+					<motion.div
+						variants={fadeUp}
+						transition={{ duration: 0.5 }}
+						className="mt-8 rounded-2xl border border-amber-500/25 bg-amber-500/5 px-6 py-4 text-center text-sm text-amber-200/80"
+					>
+						Weekend build in progress — live demo and repo links coming soon.
+					</motion.div>
+				) : null}
 
 				<motion.section variants={fadeUp} transition={{ duration: 0.5 }} className="mt-16 md:mt-20">
 					<h2 className="section-label mb-6">Overview</h2>
@@ -124,7 +147,7 @@ export default function WorkProject() {
 				</motion.section>
 
 				<motion.section variants={fadeUp} transition={{ duration: 0.5 }} className="mt-16 md:mt-20">
-					<h2 className="section-label mb-6">Highlights</h2>
+					<h2 className="section-label mb-6">{isInProgress ? "Planned features" : "Highlights"}</h2>
 					<ul className="space-y-3">
 						{project.highlights.map((item, index) => (
 							<motion.li

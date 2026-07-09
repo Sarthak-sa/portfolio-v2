@@ -59,7 +59,39 @@ export const projects = [
 			"Theme adapts dynamically based on selected shirt color",
 		],
 	},
+	{
+		slug: "movie-search",
+		title: "Movie Search",
+		tagline: "Search, discover, and save films — powered by TMDB.",
+		status: "In progress",
+		statusDetail: "Weekend build · In progress · 2026",
+		year: "2026",
+		role: "Solo · design + engineering",
+		category: "in-progress",
+		stack: ["React", "Vite", "Tailwind", "TMDB API", "React Router"],
+		githubUrl: null,
+		liveUrl: null,
+		ctaLabel: "Live demo",
+		shortDescription:
+			"React movie discovery app — debounced search, trending homepage, detail pages, and a localStorage watchlist, all backed by the TMDB API.",
+		overview: [
+			"Movie Search is a weekend side project: a dark-themed React app for finding films, browsing what's trending, and saving titles to a personal watchlist.",
+			"The plan covers debounced search, a responsive poster grid, rich movie detail pages, and watchlist persistence in localStorage — no backend required.",
+			"Built to sharpen API integration and UI polish on a tight timeline, with deployment to Vercel or Netlify when the MVP ships.",
+		],
+		highlights: [
+			"Debounced search with loading, empty, and error states",
+			"Trending and popular movies on the homepage",
+			"Movie detail pages with synopsis, runtime, genres, and cast",
+			"Watchlist saved to localStorage with heart toggles on cards",
+			"Responsive dark UI with skeleton loaders and card hover effects",
+			"TMDB API integration with poster and backdrop image handling",
+		],
+	},
 ];
+
+export const shippedProjects = projects.filter((p) => p.category === "shipped");
+export const inProgressProjects = projects.filter((p) => p.category === "in-progress");
 
 export const getProjectBySlug = (slug) => projects.find((p) => p.slug === slug);
 
