@@ -40,7 +40,7 @@ export const profile = {
 		{
 			role: "Software Developer",
 			company: "Enbraun Technologies",
-			period: "Jun 2023 – Present",
+			period: "Jun 2023 – Sept 2026",
 			highlights: [
 				"OAuth 2.0 flows for Salesforce, Google Calendar, and Outlook integrations",
 				"Enterprise integrations with Jira, Slack, and calendar platforms",
